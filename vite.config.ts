@@ -16,7 +16,7 @@ export default defineConfig({
         entryFileNames: 'index.js',
         format: 'cjs', // CommonJS形式に変更
       },
-      external: ['discord.js', 'dotenv'],
+      external: ['discord.js', 'dotenv', 'node-html-parser'],
     },
   },
   define: {

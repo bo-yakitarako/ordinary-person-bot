@@ -1,5 +1,6 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { config } from 'dotenv';
+import { parseNoharaHiroshi } from './scraping';
 
 config();
 
@@ -27,3 +28,5 @@ client.on(Events.MessageCreate, async (message) => {
 });
 
 client.login(TOKEN);
+
+parseNoharaHiroshi();
