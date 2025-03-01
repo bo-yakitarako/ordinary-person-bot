@@ -18,9 +18,9 @@ if (CHANNEL_ID === undefined) {
   throw new Error('CHANNEL_ID is not defined');
 }
 
-const { Guilds, GuildMessages, MessageContent } = GatewayIntentBits;
+const { Guilds, GuildMessages } = GatewayIntentBits;
 
-const client = new Client({ intents: [Guilds, GuildMessages, MessageContent] });
+const client = new Client({ intents: [Guilds, GuildMessages] });
 
 client.on(Events.ClientReady, async (client) => {
   console.log(`Ready! Logged in as ${client.user.tag}`);
