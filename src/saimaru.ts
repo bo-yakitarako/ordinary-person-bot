@@ -26,5 +26,5 @@ const readSavedTitle = () => {
 };
 
 const saveTitle = (title: string) => {
-  fs.writeFileSync(filePath, title);
+  fs.writeFileSync(filePath, title, { encoding: 'utf8' });
 };
