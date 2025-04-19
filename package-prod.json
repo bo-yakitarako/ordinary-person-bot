@@ -1,0 +1,13 @@
+{
+  "name": "ordinary-person-bot-production",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "node-html-parser": "^7.0.1"
+  }
+}

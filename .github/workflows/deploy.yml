@@ -1,0 +1,85 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Node.jsのセットアップ
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+
+      - name: pnpmのセットアップ
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: 依存パッケージのインストール
+        run: pnpm install
+
+      - name: .envファイルの作成
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: ビルド
+        run: pnpm build
+
+      - name: デプロイ先の準備
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: mkdir -p ~/apps && mkdir -p ~/apps/ordinary-person-bot-production
+
+      - name: .tool-versionsのアップロード
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: ".tool-versions"
+          target: "~/apps/ordinary-person-bot-production"
+          strip_components: 0
+          overwrite: true
+
+      - name: package.jsonのアップロード
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "package-prod.json"
+          target: "~/apps/ordinary-person-bot-production"
+          strip_components: 0
+          overwrite: true
+
+      - name: サーバーでの依存関係のインストール
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/apps/ordinary-person-bot-production
+            mv package-prod.json package.json
+            npm install -g pnpm
+            pnpm install --prod
+
+      - name: index.jsのアップロード
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/index.js"
+          target: "~/apps/ordinary-person-bot-production"
+          strip_components: 0
+          overwrite: true
