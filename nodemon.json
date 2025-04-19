@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["node_modules"],
-  "exec": "pnpm vite build && node dist/index.js"
+  "exec": "ts-node src/main.ts"
 }

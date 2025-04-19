@@ -1,6 +1,7 @@
 import { Client, EmbedBuilder, Events, GatewayIntentBits, TextChannel } from 'discord.js';
 import { config } from 'dotenv';
 import { parseNoharaHiroshi } from './scraping';
+import { analyzeSaimaru } from './saimaru';
 
 config();
 
@@ -37,6 +38,7 @@ client.on(Events.ClientReady, async (client) => {
   const { link, imageSrc, title } = await parseNoharaHiroshi();
   const embed = new EmbedBuilder().setTitle(title).setURL(link).setImage(imageSrc);
   await channel.send({ embeds: [embed] });
+  await analyzeSaimaru();
   await client.destroy();
 });
 
