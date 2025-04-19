@@ -1,5 +1,5 @@
-import * as fs from 'fs/promises';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { parseNoharaHiroshi } from './scraping';
 
 // ルートディレクトリへのパスを設定
@@ -8,21 +8,23 @@ const filePath = path.join(rootDir, 'saimaru.txt');
 
 export const analyzeSaimaru = async () => {
   const noharaHiroshi = await parseNoharaHiroshi();
-  const savedTitle = await readSavedTitle();
-  if (savedTitle === null) {
-    await saveTitle(noharaHiroshi.title);
+  const savedTitle = readSavedTitle();
+  if (savedTitle === noharaHiroshi.title) {
+    return null;
   }
+  saveTitle(noharaHiroshi.title);
+  return { ...noharaHiroshi };
 };
 
-const readSavedTitle = async () => {
+const readSavedTitle = () => {
   try {
-    const content = await fs.readFile(filePath, 'utf8');
-    return content;
+    const content = fs.readFileSync(filePath, 'utf8');
+    return content || null;
   } catch {
     return null;
   }
 };
 
-const saveTitle = async (title: string) => {
-  await fs.writeFile(filePath, title);
+const saveTitle = (title: string) => {
+  fs.writeFileSync(filePath, title);
 };
