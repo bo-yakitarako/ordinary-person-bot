@@ -83,3 +83,6 @@ jobs:
           target: "~/apps/ordinary-person-bot-production"
           strip_components: 0
           overwrite: true
+          timeout: 600s
+          command_timeout: 600s
+          use_insecure_cipher: true
