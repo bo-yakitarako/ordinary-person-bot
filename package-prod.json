@@ -1,9 +1,9 @@
 {
-  "name": "ordinary-person-bot-production",
+  "name": "ordinary-person-bot-weekly",
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node weekly.js"
   },
   "dependencies": {
     "discord.js": "^14.18.0",
