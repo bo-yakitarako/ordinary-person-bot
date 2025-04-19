@@ -5,7 +5,9 @@ config();
 
 const debug = process.env.DEBUG === 'true';
 
-const ENTRY = debug ? 'http://localhost:8080' : 'https://manga-shinchan.com/hiroshi-hirumeshi';
+const ENTRY = debug
+  ? 'http://localhost:8080'
+  : 'https://manga-shinchan.com/hiroshi-hirumeshi-saimaru';
 
 export const parseNoharaHiroshi = async () => {
   const res = await fetch(ENTRY);
