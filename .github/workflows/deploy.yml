@@ -73,13 +73,17 @@ jobs:
             npm install -g pnpm
             pnpm install --prod
 
+      - name: index.jsをdistから移動
+        run: |
+          cp dist/index.js ./index.js
+
       - name: index.jsのアップロード
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/index.js"
+          source: "index.js"
           target: "~/apps/ordinary-person-bot-production"
           strip_components: 0
           overwrite: true
