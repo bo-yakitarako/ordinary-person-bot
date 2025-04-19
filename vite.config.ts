@@ -13,7 +13,7 @@ export default defineConfig({
         main: 'src/main.ts',
       },
       output: {
-        entryFileNames: 'index.js',
+        entryFileNames: 'weekly.js',
         format: 'cjs', // CommonJS形式に変更
       },
       external: ['discord.js', 'dotenv', 'node-html-parser'],
