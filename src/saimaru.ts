@@ -18,7 +18,7 @@ export const analyzeSaimaru = async () => {
 
 const readSavedTitle = () => {
   try {
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8').trim();
     return content || null;
   } catch {
     return null;
