@@ -59,14 +59,3 @@ jobs:
           timeout: 600s
           command_timeout: 600s
           use_insecure_cipher: true
-
-      - name: サーバーでの依存関係のインストール
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd ~/apps/ordinary-person-bot-production
-            npm install -g pnpm
-            pnpm install --prod
