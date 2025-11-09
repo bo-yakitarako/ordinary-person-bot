@@ -1,6 +1,6 @@
 import { Client, EmbedBuilder, Events, GatewayIntentBits, TextChannel } from 'discord.js';
 import { config } from 'dotenv';
-import { parseNoharaHiroshi } from './scraping';
+import { analyzeNiconico } from './niconico';
 
 config();
 
@@ -34,9 +34,17 @@ client.on(Events.ClientReady, async (client) => {
     return;
   }
 
-  const { link, imageSrc, title } = await parseNoharaHiroshi();
-  const embed = new EmbedBuilder().setTitle(title).setURL(link).setImage(imageSrc);
-  await channel.send({ embeds: [embed] });
+  const noharaHiroshi = await analyzeNiconico();
+  if (noharaHiroshi !== null) {
+    const { title, thumbnail, description, link } = noharaHiroshi;
+    const embed = new EmbedBuilder()
+      .setTitle(title)
+      .setURL(link)
+      .setImage(thumbnail)
+      .setDescription(`${description}...`);
+    await channel.send({ embeds: [embed] });
+  }
+
   await client.destroy();
 });
 

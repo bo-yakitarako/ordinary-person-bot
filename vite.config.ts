@@ -13,7 +13,7 @@ export default defineConfig({
         main: 'src/main.ts',
       },
       output: {
-        entryFileNames: 'weekly.js',
+        entryFileNames: 'niconico.js',
         format: 'cjs', // CommonJS形式に変更
       },
       external: ['discord.js', 'dotenv', 'node-html-parser'],
