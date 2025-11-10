@@ -9,7 +9,6 @@ const ENTRY = debug
   ? 'http://localhost:8080'
   : 'https://www.nicovideo.jp/series/532563?rf=nvpc&rp=watch&ra=series';
 
-// eslint-disable-next-line complexity
 export const parseNoharaHiroshi = async () => {
   const res = await fetch(ENTRY);
   const html = await res.text();
@@ -19,15 +18,44 @@ export const parseNoharaHiroshi = async () => {
     throw new Error('無くね？');
   }
   const target = episodes[episodes.length - 1];
-  const title = target.querySelector('h2')?.innerText?.trim();
-  const thumbnail = target
-    .querySelector('.NC-Thumbnail-image')
-    ?.getAttribute('data-background-image');
-  const description = target.querySelector('.NC-VideoMediaObject-description')?.innerText?.trim();
-  const registeredAt = target.querySelector('.NC-VideoRegisteredAtText-text')?.innerText?.trim();
   const link = target.querySelector('a')?.getAttribute('href');
-  if (!title || !thumbnail || !description || !registeredAt || !link) {
+  if (!link) {
     throw new Error('なんだこのエピソードは');
   }
-  return { title, thumbnail, description, registeredAt, link };
+  const detailLink = debug ? 'http://localhost:8081' : link;
+  const data = await parseDetail(detailLink);
+  if (data === null) {
+    throw new Error('動画ページこわれてね？');
+  }
+  return { ...data, link };
+};
+
+type ServerResponse = {
+  data: {
+    response: {
+      video: {
+        id: string;
+        title: string;
+        description: string;
+        thumbnail: { url: string; ogp: string };
+        registeredAt: string;
+      };
+    };
+  };
+};
+
+const parseDetail = async (link: string) => {
+  const fetched = await fetch(link);
+  const html = await fetched.text();
+  const root = parse(html);
+  const meta = root.querySelector('meta[name="server-response"]');
+  const res = JSON.parse(meta?.getAttribute('content') ?? 'null') as ServerResponse | null;
+  if (res === null) {
+    return null;
+  }
+  const { video } = res.data.response;
+  const { title, registeredAt } = video;
+  const description = video.description.replace(/<br>/g, '\n').split('<u>')[0].trim();
+  const thumbnail = video.thumbnail.ogp;
+  return { title, description, thumbnail, registeredAt };
 };

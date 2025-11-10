@@ -6,6 +6,7 @@
     "dev": "nodemon",
     "build": "tsc && vite build",
     "debug": "serve -s debug -p 8080",
+    "video": "serve -s video -p 8081",
     "start": "ts-node -T src/main.ts"
   },
   "devDependencies": {
