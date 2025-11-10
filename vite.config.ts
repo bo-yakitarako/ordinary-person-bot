@@ -16,7 +16,7 @@ export default defineConfig({
         entryFileNames: 'niconico.js',
         format: 'cjs', // CommonJS形式に変更
       },
-      external: ['discord.js', 'dotenv', 'node-html-parser'],
+      external: ['discord.js', 'dotenv', 'node-html-parser', 'path', 'fs'],
     },
   },
   define: {
