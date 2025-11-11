@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ niconico ]
   workflow_dispatch:
 
 jobs:
@@ -44,7 +44,7 @@ jobs:
           mkdir -p deploy
           cp .tool-versions deploy/
           cp package-prod.json deploy/package.json
-          cp dist/weekly.js deploy/
+          cp dist/niconico.js deploy/
 
       - name: ファイル一括アップロード
         uses: appleboy/scp-action@master
@@ -59,14 +59,3 @@ jobs:
           timeout: 600s
           command_timeout: 600s
           use_insecure_cipher: true
-
-      - name: サーバーでの依存関係のインストール
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd ~/apps/ordinary-person-bot-production
-            npm install -g pnpm
-            pnpm install --prod
