@@ -41,7 +41,7 @@ client.on(Events.ClientReady, async (client) => {
       .setTitle(title)
       .setURL(link)
       .setImage(thumbnail)
-      .setDescription(`${description}...`);
+      .setDescription(description);
     await channel.send({ embeds: [embed] });
   }
 
