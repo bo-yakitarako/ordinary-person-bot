@@ -3,10 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon",
-    "build": "tsup --entry.weekly src/main.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
-    "debug": "serve -s debug -p 8080",
-    "start": "ts-node -T src/main.ts"
+    "build": "tsup --entry.weekly src/weekly.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
+    "debug": "serve -s debug -p 3000",
+    "weekly": "ts-node src/weekly.ts"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
@@ -20,7 +19,6 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^16.0.0",
-    "nodemon": "^3.1.9",
     "prettier": "^3.5.2",
     "serve": "^14.2.4",
     "ts-node": "^10.9.2",
