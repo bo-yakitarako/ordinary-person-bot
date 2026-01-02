@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc && vite build",
+    "build": "tsup --entry.weekly src/main.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
     "debug": "serve -s debug -p 8080",
     "start": "ts-node -T src/main.ts"
   },
@@ -24,8 +24,8 @@
     "prettier": "^3.5.2",
     "serve": "^14.2.4",
     "ts-node": "^10.9.2",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+    "tsup": "^8.5.1",
+    "typescript": "~5.7.2"
   },
   "dependencies": {
     "discord.js": "^14.18.0",
