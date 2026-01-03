@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { parseNiconico } from './scraping/niconicoScraping';
 import { EmbedBuilder } from 'discord.js';
-import { onceOnLogin } from './onceOnLogin';
+import { onceOnLogin } from './login';
 
 const rootDir = path.resolve(process.cwd());
 const filePath = path.join(rootDir, 'niconico.txt');

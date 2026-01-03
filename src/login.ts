@@ -36,3 +36,9 @@ export const onceOnLogin = (callback: (channel: TextChannel) => Promise<void>) =
   });
   client.login(TOKEN);
 };
+
+export const login = () => {
+  const client = new Client({ intents: [Guilds, GuildMessages] });
+  client.login(TOKEN);
+  return client;
+};

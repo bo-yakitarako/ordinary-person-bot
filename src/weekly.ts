@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import { parseWeekly } from './scraping/weeklyScraping';
-import { onceOnLogin } from './onceOnLogin';
+import { onceOnLogin } from './login';
 
 onceOnLogin(async (channel) => {
   const { link, imageSrc, title } = await parseWeekly();

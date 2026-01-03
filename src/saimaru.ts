@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseSaimaru } from './scraping/saimaruScraping';
-import { onceOnLogin } from './onceOnLogin';
+import { onceOnLogin } from './login';
 import { EmbedBuilder } from 'discord.js';
 
 // ルートディレクトリへのパスを設定
