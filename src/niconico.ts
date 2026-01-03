@@ -31,6 +31,7 @@ const readSavedText = () => {
 };
 
 (async () => {
+  await new Promise((resolve) => setTimeout(resolve, 15000));
   const niconico = await analyzeNiconico();
   if (niconico === null) {
     console.log('更新なさぽよ');

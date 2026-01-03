@@ -32,6 +32,7 @@ const saveTitle = (title: string) => {
 };
 
 (async () => {
+  await new Promise((resolve) => setTimeout(resolve, 15000));
   const saimaru = await analyzeSaimaru();
   if (saimaru === null) {
     console.log('更新なさぽよ');
