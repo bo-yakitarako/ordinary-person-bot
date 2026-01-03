@@ -1,0 +1,13 @@
+services:
+  ordinary-person-bot:
+    build: .
+    container_name: ordinary-person-bot
+    restart: always
+    environment:
+      TOKEN: ${TOKEN}
+      CLIENT_ID: ${CLIENT_ID}
+      GUILD_ID: ${GUILD_ID}
+      CHANNEL_ID: ${CHANNEL_ID}
+    volumes:
+      - /home/shinnijiemo/ordinary-person-bot/saimaru.txt:/app/saimaru.txt
+      - /home/shinnijiemo/ordinary-person-bot/niconico.txt:/app/niconico.txt
