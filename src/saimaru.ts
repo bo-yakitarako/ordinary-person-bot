@@ -34,6 +34,7 @@ const saveTitle = (title: string) => {
 (async () => {
   const saimaru = await analyzeSaimaru();
   if (saimaru === null) {
+    console.log('更新なさぽよ');
     return;
   }
   onceOnLogin(async (channel) => {

@@ -33,6 +33,7 @@ const readSavedText = () => {
 (async () => {
   const niconico = await analyzeNiconico();
   if (niconico === null) {
+    console.log('更新なさぽよ');
     return;
   }
   onceOnLogin(async (channel) => {
