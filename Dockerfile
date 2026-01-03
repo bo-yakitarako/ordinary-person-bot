@@ -11,4 +11,4 @@ WORKDIR /app
 COPY . .
 RUN pnpm install --frozen-lockfile && pnpm build
 
-RUN ["node", "dist/index.js"]
+CMD ["node", "dist/index.js"]
