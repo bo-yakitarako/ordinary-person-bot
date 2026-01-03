@@ -3,9 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "tsup --entry.weekly src/weekly.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
-    "debug": "serve -s debug -p 3000",
-    "weekly": "ts-node src/weekly.ts"
+    "build-weekly": "tsup --entry.weekly src/weekly.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
+    "build-saimaru": "tsup --entry.saimaru src/saimaru.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
+    "build": "pnpm build-weekly && pnpm build-saimaru",
+    "debug": "serve debug -p 3000",
+    "weekly": "ts-node src/weekly.ts",
+    "saimaru": "ts-node src/saimaru.ts"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
