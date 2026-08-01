@@ -25,7 +25,7 @@
     "postinstall": "lefthook install --reset-hooks-path"
   },
   "dependencies": {
-    "disbord": "^2.2.3",
+    "disbord": "^2.2.4",
     "discord.js": "^14.27.0",
     "node-html-parser": "^9.0.1"
   },

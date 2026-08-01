@@ -5,7 +5,7 @@
     "": {
       "name": "ordinary-person-bot",
       "dependencies": {
-        "disbord": "^2.2.3",
+        "disbord": "^2.2.4",
         "discord.js": "^14.27.0",
         "node-html-parser": "^9.0.1",
       },
@@ -318,7 +318,7 @@
 
     "detect-libc": ["detect-libc@2.0.2", "", {}, "sha512-UX6sGumvvqSaXgdKGUsgZWqcUyIXZ/vZTrlRT/iobiKhGL0zL4d3osHj3uqllWJK+i+sixDS/3COVEOFbupFyw=="],
 
-    "disbord": ["disbord@2.2.3", "", { "dependencies": { "@dotenvx/dotenvx": "^2.19.0", "@libsql/client": "^0.17.2", "dayjs": "^1.11.19", "discord.js": "^14.21.0", "drizzle-kit": "^0.31.10", "drizzle-orm": "^0.45.1" }, "peerDependencies": { "typescript": "^7" }, "bin": { "disbord": "src/cli/bin.ts" } }, "sha512-s6zvMgjCcx78+fToXq0AqxCIVbESqoDQvuStuqv5Qk1pWh5HUuRBmXQ9Q8pkwCjCG/1OqZ1tA59L73ABX6KPLQ=="],
+    "disbord": ["disbord@2.2.4", "", { "dependencies": { "@dotenvx/dotenvx": "^2.19.0", "@libsql/client": "^0.17.2", "dayjs": "^1.11.19", "discord.js": "^14.21.0", "drizzle-kit": "^0.31.10", "drizzle-orm": "^0.45.1" }, "peerDependencies": { "typescript": "^7" }, "bin": { "disbord": "src/cli/bin.ts" } }, "sha512-SDibAx2AwMRUPdCi7TypsYbUu4kd2DkAuFv+luVStUfcsHHAhq8TdKG66K0JiHpNIAtTVrGYcXeEkxvrLHTZIg=="],
 
     "discord-api-types": ["discord-api-types@0.38.52", "", {}, "sha512-uwe9EKfbjsmgWc2fdFjvDbj+dQqx3lp7wqDCmIha0jInuU+xeQjkCK9tMMn+p7RXfdVQORCInq4cD3U2ymDmyg=="],
 
