@@ -1,7 +1,4 @@
-import { config } from 'dotenv';
 import { parse } from 'node-html-parser';
-
-config();
 
 const debug = process.env.DEBUG === 'true';
 
@@ -22,9 +19,7 @@ export const parseWeekly = async () => {
     if (!link) {
       throw new Error('エピソードリンクが見つからんぽい');
     }
-    const imageSrc = episode
-      .querySelector('.item__list-img figure a:last-child img')
-      ?.getAttribute('src');
+    const imageSrc = episode.querySelector('.item__list-img figure a:last-child img')?.getAttribute('src');
     if (!imageSrc) {
       throw new Error('エピソードはあるけどサムネ画像が見つからないらしい');
     }

@@ -1,13 +1,8 @@
-import { config } from 'dotenv';
 import { parse } from 'node-html-parser';
-
-config();
 
 const debug = process.env.DEBUG === 'true';
 
-const ENTRY = debug
-  ? 'http://localhost:3000/saimaru'
-  : 'https://manga-shinchan.com/hiroshi-hirumeshi-saimaru';
+const ENTRY = debug ? 'http://localhost:3000/saimaru' : 'https://manga-shinchan.com/hiroshi-hirumeshi-saimaru';
 
 export const parseSaimaru = async () => {
   const res = await fetch(ENTRY);
@@ -24,9 +19,7 @@ export const parseSaimaru = async () => {
     if (!link) {
       throw new Error('エピソードリンクが見つからんぽい');
     }
-    const imageSrc = episode
-      .querySelector('.item__list-img figure a:last-child img')
-      ?.getAttribute('src');
+    const imageSrc = episode.querySelector('.item__list-img figure a:last-child img')?.getAttribute('src');
     if (!imageSrc) {
       throw new Error('エピソードはあるけどサムネ画像が見つからないらしい');
     }

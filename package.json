@@ -1,40 +1,40 @@
 {
   "name": "ordinary-person-bot",
+  "version": "0.0.1",
   "private": true,
-  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node src/index.ts",
-    "build-index": "tsup --entry.index src/index.ts --format cjs --outDir dist --external discord.js --external dotenv --minify --no-clean",
-    "build-weekly": "tsup --entry.weekly src/weekly.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
-    "build-saimaru": "tsup --entry.saimaru src/saimaru.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
-    "build-niconico": "tsup --entry.niconico src/niconico.ts --format cjs --outDir dist --external discord.js --external dotenv --external node-html-parser --minify --no-clean",
-    "build": "pnpm build-index && pnpm build-weekly && pnpm build-saimaru && pnpm build-niconico",
-    "debug": "serve debug -p 3000",
-    "weekly": "ts-node src/weekly.ts",
-    "saimaru": "ts-node src/saimaru.ts",
-    "niconico": "ts-node src/niconico.ts"
-  },
-  "devDependencies": {
-    "@eslint/compat": "^1.2.7",
-    "@eslint/eslintrc": "^3.3.0",
-    "@eslint/js": "^9.21.0",
-    "@types/node": "^22.13.8",
-    "@typescript-eslint/eslint-plugin": "^8.25.0",
-    "@typescript-eslint/parser": "^8.25.0",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.2",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.3",
-    "globals": "^16.0.0",
-    "prettier": "^3.5.2",
-    "serve": "^14.2.4",
-    "ts-node": "^10.9.2",
-    "tsup": "^8.5.1",
-    "typescript": "~5.7.2"
+    "dev": "disbord dev",
+    "build": "disbord build",
+    "once": "disbord once",
+    "fmt": "oxfmt --write src test",
+    "lint": "oxlint -c oxlint.config.ts --fix",
+    "commands": "disbord commands push",
+    "commands:delete": "disbord commands delete",
+    "gen:event": "disbord generate event",
+    "gen:once": "disbord generate once",
+    "gen:component": "disbord generate component",
+    "gen:workflow": "disbord generate workflow",
+    "enable": "disbord enable",
+    "disable": "disbord disable",
+    "env": "disbord env",
+    "encrypt": "disbord env encrypt",
+    "decrypt": "disbord env decrypt",
+    "help": "disbord help",
+    "debug": "serve debug -l 3000",
+    "postinstall": "lefthook install --reset-hooks-path"
   },
   "dependencies": {
-    "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7",
-    "node-html-parser": "^7.0.1"
+    "disbord": "^2.2.3",
+    "discord.js": "^14.27.0",
+    "node-html-parser": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.13",
+    "lefthook": "^2.1.6",
+    "oxfmt": "^0.61.0",
+    "oxlint": "^1.76.0",
+    "serve": "^14.2.6",
+    "typescript": "^7.0.2"
   }
 }
